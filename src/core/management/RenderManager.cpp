@@ -1,4 +1,5 @@
 #include "RenderManager.h"
+#include "../object_components/Renderer2D.h"
 #include "../Engine.h"
 
 RenderManager::RenderManager(WindowSettings windowSettings) : windowInstance(sf::RenderWindow(sf::VideoMode(windowSettings.width, windowSettings.height), windowSettings.name))
@@ -11,15 +12,14 @@ void RenderManager::renderDrawableObjects()
 
     for (auto [name, object] : Engine::instance() -> dataStorage -> gameObjects)
     {
-        if (object.isDrawable)
-            renderObject(object);
+        if (object.hasComponent<Renderer2D>())
+            object.getComponent<Renderer2D>()->draw(windowInstance);
     };
 
     windowInstance.display();
 }   
 
-void RenderManager::renderObject(const GameObject& object)
+void RenderManager::renderObject(sf::Drawable& object)
 {
-    if (object.sprite)
-        windowInstance.draw(*object.sprite);
+    windowInstance.draw(object);
 }

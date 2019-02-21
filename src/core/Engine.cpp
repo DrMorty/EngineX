@@ -1,7 +1,5 @@
     #include "Engine.h"
-
-    #include <iostream>
-
+    
     Engine::Engine()
     {
 
@@ -31,8 +29,6 @@
 
     void Engine::run()
     {
-        std::cout << "Engine started" << std::endl;
-
         for(;;)
         {
             renderManager -> renderDrawableObjects();
