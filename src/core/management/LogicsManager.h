@@ -5,13 +5,16 @@
 
 #include "../object_components/GameObjectComponent.h"
 
-class LogicsManager
-{
- public:
-    void updateObjectScripts();
-    void registerScript(GameObjectComponent* script);
- private:
-    std::vector<GameObjectComponent*> scripts;
-};
+namespace engine
+{   
+    class LogicsManager
+    {
+    public:
+        void updateObjectScripts();
+        void registerScript(GameObjectComponent* script);
+    private:
+        std::vector<GameObjectComponent*> scripts;
+    };
+}
 
 #endif 

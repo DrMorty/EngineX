@@ -20,12 +20,12 @@ int main()
     sf::Texture texture;
     texture.loadFromFile("logo.png");
 
-    createObject("test");
-    getObject("test").addComponent<Renderer2D>();
-    getObject("test").addComponent<TestScript>();
-    getObject("test").getComponent<Renderer2D>()->setSprite(texture);
+    engineX::createObject("test");
+    engineX::getObject("test").addComponent<Renderer2D>();
+    engineX::getObject("test").addComponent<TestScript>();
+    engineX::getObject("test").getComponent<Renderer2D>()->setSprite(texture);
 
-    runScene();
+    engineX::runScene();
 
     return 0;
 }

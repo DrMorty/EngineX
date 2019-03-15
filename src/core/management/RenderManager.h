@@ -3,27 +3,30 @@
 
 #include <SFML/Graphics.hpp>
 
-struct WindowSettings
-{
-    std::string name;
+namespace engine
+{   
+    struct WindowSettings
+    {
+        std::string name;
 
-    int width;
-    int height;
-};
+        int width;
+        int height;
+    };
 
-const WindowSettings DEFAULT_WINDOW_SETTINGS = {"Default", 1200, 800};
+    const WindowSettings DEFAULT_WINDOW_SETTINGS = {"Default", 1200, 800};
 
-class RenderManager
-{
- public:
-    RenderManager(WindowSettings windowSettings = DEFAULT_WINDOW_SETTINGS);
+    class RenderManager
+    {
+    public:
+        RenderManager(WindowSettings windowSettings = DEFAULT_WINDOW_SETTINGS);
 
-    void renderDrawableObjects();
-    void renderObject(sf::Drawable& object);
+        void renderDrawableObjects();
+        void renderObject(sf::Drawable& object);
 
- private:
+    private:
 
-    sf::RenderWindow windowInstance;
-};
+        sf::RenderWindow windowInstance;
+    };
+}
 
 #endif

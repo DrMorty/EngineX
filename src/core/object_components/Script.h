@@ -3,12 +3,15 @@
 
 #include "GameObjectComponent.h"
 
-class Script : public GameObjectComponent
-{
- public:
+namespace engine
+{   
+    class Script : public GameObjectComponent
+    {
+    public:
 
-    virtual void start() = 0;
-    virtual void update() = 0;     
-};
+        virtual void start() = 0;
+        virtual void update() = 0;     
+    };
+}
 
 #endif

@@ -7,16 +7,19 @@
 
 #include "GameObject.h"
 
-class DataStorage
-{
- public:
+namespace engine
+{   
+    class DataStorage
+    {
+    public:
 
-    DataStorage();
-    ~DataStorage();
+        DataStorage();
+        ~DataStorage();
 
-    std::map<std::string, GameObject> gameObjects;
+        std::map<std::string, GameObject> gameObjects;
 
- private:
-};
+    private:
+    };
+}
 
 #endif

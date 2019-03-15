@@ -1,9 +1,12 @@
 #include "DataStorage.h"
 
-DataStorage::DataStorage()
-{
-}
+namespace engine
+{   
+    DataStorage::DataStorage()
+    {
+    }
 
-DataStorage::~DataStorage()
-{
+    DataStorage::~DataStorage()
+    {
+    }
 }

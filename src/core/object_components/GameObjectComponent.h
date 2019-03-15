@@ -3,11 +3,14 @@
 
 #include <string>
 
-class GameObjectComponent
-{
- public:
-    std::string typeName;
- private:
-};
+namespace engine
+{   
+    class GameObjectComponent
+    {
+    public:
+        std::string typeName;
+    private:
+    };
+}
 
 #endif

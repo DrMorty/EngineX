@@ -10,31 +10,42 @@
 #include "object_components/Script.h"
 #include "object_components/Renderer2D.h"
 
-class Engine
+using engine::Renderer2D;
+using engine::Script;
+
+namespace engine
 {
- public: 
+    class Engine
+    {
+    public: 
 
-    static Engine* instance();
-    ~Engine();
+        static Engine* instance();
+        ~Engine();
 
-    void run();
+        void run();
 
-    std::unique_ptr<RenderManager> renderManager;
-    std::unique_ptr<LogicsManager> logicsManager;
-    std::unique_ptr<DataStorage> dataStorage;
+        std::unique_ptr<RenderManager> renderManager;
+        std::unique_ptr<LogicsManager> logicsManager;
+        std::unique_ptr<DataStorage> dataStorage;
 
- private:
-    Engine();
+    private:
+        Engine();
 
-    static Engine* m_instance;
-};
+        static Engine* m_instance;
+    };
+}
 
-void createObject(std::string name);
-GameObject& getObject(std::string name);
+namespace engineX
+{
+    using namespace engine;
 
-//void destroyObject(std::string name);
-//void destroyObject(GameObject& object);
+    void createObject(std::string name);
+    GameObject& getObject(std::string name);
 
-void runScene();
+    //void destroyObject(std::string name);
+    //void destroyObject(GameObject& object);
+
+    void runScene();
+}
 
 #endif
