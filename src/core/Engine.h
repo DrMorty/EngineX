@@ -4,8 +4,11 @@
 #include <memory>
 
 #include "management/RenderManager.h"
-#include "management/EventManager.h"
+#include "management/LogicsManager.h"
 #include "storage/DataStorage.h"
+
+#include "object_components/Script.h"
+#include "object_components/Renderer2D.h"
 
 class Engine
 {
@@ -14,11 +17,10 @@ class Engine
     static Engine* instance();
     ~Engine();
 
-    void initialize();
     void run();
 
     std::unique_ptr<RenderManager> renderManager;
-    std::unique_ptr<EventManager> eventManager;
+    std::unique_ptr<LogicsManager> logicsManager;
     std::unique_ptr<DataStorage> dataStorage;
 
  private:
@@ -26,5 +28,13 @@ class Engine
 
     static Engine* m_instance;
 };
+
+void createObject(std::string name);
+GameObject& getObject(std::string name);
+
+//void destroyObject(std::string name);
+//void destroyObject(GameObject& object);
+
+void runScene();
 
 #endif

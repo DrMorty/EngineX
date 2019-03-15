@@ -6,9 +6,6 @@
 class GameObjectComponent
 {
  public:
-    GameObjectComponent(std::string t_typeName) : typeName(t_typeName)
-    {}
-
     std::string typeName;
  private:
 };

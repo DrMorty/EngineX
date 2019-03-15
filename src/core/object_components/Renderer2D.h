@@ -1,15 +1,13 @@
 #ifndef RENDERER_2D_H
 #define RENDERER_2D_H
 
+#include <SFML/Graphics.hpp>
+
 #include "GameObjectComponent.h"
-#include "../Engine.h"
 
 class Renderer2D : public GameObjectComponent
 {
  public:
-    Renderer2D(std::string t_typeName) : GameObjectComponent(t_typeName)
-    {};
-
     ~Renderer2D() 
     {};
 

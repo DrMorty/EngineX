@@ -3,8 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "../storage/GameObject.h"
-
 struct WindowSettings
 {
     std::string name;

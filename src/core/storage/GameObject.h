@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "../object_components/GameObjectComponent.h"
+#include "../object_components/Script.h"
 
 class GameObject
 {
@@ -29,6 +30,7 @@ class GameObject
     void setSprite(const sf::Texture& texture);
 
  private:
+    void registerScriptForThisObject(GameObjectComponent* script);
 
     std::vector<GameObjectComponent*> m_components;
 };
@@ -36,7 +38,13 @@ class GameObject
 template <typename ComponentType>
 void GameObject::addComponent()
 {
-    m_components.push_back(new ComponentType(typeid(ComponentType).name()));
+    auto component = new ComponentType;
+    component->typeName = typeid(ComponentType).name();
+
+    m_components.push_back(component);
+
+    if (std::is_base_of<Script, ComponentType>())
+        registerScriptForThisObject(component);
 }
 
 template <typename ComponentType>
@@ -61,6 +69,5 @@ bool GameObject::hasComponent()
 
     return false;
 }
-
 
 #endif

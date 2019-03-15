@@ -1,5 +1,8 @@
-#include "Renderer2D.h"
 #include <iostream>
+
+#include "Renderer2D.h"
+#include "../Engine.h"
+
 
 void Renderer2D::setSprite(const sf::Texture& t_texture)
 {

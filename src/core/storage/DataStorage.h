@@ -1,12 +1,11 @@
 #ifndef DATA_STORAGE_H
-#define DATA_STORAGEH
-
-#include "GameObject.h"
+#define DATA_STORAGE_H
 
 #include <map>
 #include <string>
 #include <memory>
 
+#include "GameObject.h"
 
 class DataStorage
 {
@@ -18,7 +17,6 @@ class DataStorage
     std::map<std::string, GameObject> gameObjects;
 
  private:
-
 };
 
 #endif
