@@ -2,18 +2,21 @@
 #define LOGICS_MANAGER_H
 
 #include <vector>
+#include <list>
 
-#include "../object_components/GameObjectComponent.h"
+#include "../storage/GameObject.h"
 
 namespace engine
 {   
     class LogicsManager
     {
     public:
-        void updateObjectScripts();
-        void registerScript(GameObjectComponent* script);
+        void callStartForScripts();
+        void callUpdateForScripts();
+        void registerScript(Script* script);
     private:
-        std::vector<GameObjectComponent*> scripts;
+        std::list<Script*> notStartedScripts;
+        std::vector<Script*> scripts;
     };
 }
 

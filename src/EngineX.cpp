@@ -7,11 +7,12 @@ class TestScript : public Script
  public:
     void start()
     {
+        object->transform.position.y = 400.0f;
     }
 
     void update()
     {
-        std::cout << "helo" << std::endl;
+        object->transform.position.x += 0.1;
     }
 };
 

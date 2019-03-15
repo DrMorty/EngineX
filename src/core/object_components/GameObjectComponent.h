@@ -5,10 +5,13 @@
 
 namespace engine
 {   
+    class GameObject;
+
     class GameObjectComponent
     {
     public:
-        std::string typeName;
+        std::string typeName = "";
+        GameObject* object = 0;
     private:
     };
 }

@@ -30,7 +30,8 @@ namespace engine
         for(;;)
         {
             renderManager -> renderDrawableObjects();
-            logicsManager -> updateObjectScripts();
+            logicsManager -> callStartForScripts();
+            logicsManager -> callUpdateForScripts();
         }
     };
 }

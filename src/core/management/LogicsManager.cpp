@@ -5,16 +5,23 @@
 
 namespace engine
 {   
-    void LogicsManager::updateObjectScripts()
+    void LogicsManager::callUpdateForScripts()
     {  
         for (auto  script : scripts)
-        {
-            static_cast<Script*>(script)->update();
-        }; 
+            script->update();
     }
 
-    void LogicsManager::registerScript(GameObjectComponent* script)
+    void LogicsManager::callStartForScripts()
+    {  
+        for (auto  script : notStartedScripts)
+            script->start();
+
+        notStartedScripts.clear();
+    }
+
+    void LogicsManager::registerScript(Script* script)
     {
+        notStartedScripts.push_back(script);
         scripts.push_back(script);
     }
 }

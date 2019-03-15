@@ -18,6 +18,7 @@ namespace engine
 
     void Renderer2D::draw(sf::RenderWindow& windowInstance)
     {
+        sprite.setPosition(object->transform.position);
         Engine::instance()->renderManager->renderObject(sprite);
     }
 }

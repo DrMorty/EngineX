@@ -11,6 +11,14 @@
 
 namespace engine
 {   
+    class Transform
+    {
+    public:
+        sf::Vector2<float> position = {0.0, 0.0};
+        sf::Vector2<float> rotation = {0.0, 0.0};
+        sf::Vector2<float> scale = {1.0, 1.0};
+    };
+
     class GameObject
     {
     public:
@@ -27,9 +35,10 @@ namespace engine
         template <typename ComponentType>
         bool hasComponent();
 
-        std::string name;
-
         void setSprite(const sf::Texture& texture);
+
+        std::string name;
+        Transform transform;
 
     private:
         void registerScriptForThisObject(GameObjectComponent* script);
@@ -42,6 +51,7 @@ namespace engine
     {
         auto component = new ComponentType;
         component->typeName = typeid(ComponentType).name();
+        component->object = this;
 
         m_components.push_back(component);
 
