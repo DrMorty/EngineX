@@ -20,4 +20,15 @@ namespace engine
     {
         newEventsPerFrame.clear();
     }
+
+    std::vector<sf::Event> EventManager::getAllEventsOfType(sf::Event::EventType type)
+    {
+        std::vector<sf::Event> eventsOfType;
+
+        for (auto& event : newEventsPerFrame)
+            if (event.type == type)
+                eventsOfType.push_back(event);
+
+        return eventsOfType;
+    }
 }

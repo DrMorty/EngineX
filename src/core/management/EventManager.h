@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <list>
+#include <vector>
 
 namespace engine
 {
@@ -11,6 +12,8 @@ namespace engine
      public:
         void pollEvents();
         void clearEvents();
+
+        std::vector<sf::Event> getAllEventsOfType(sf::Event::EventType);
 
      private:
         std::list<sf::Event> newEventsPerFrame;

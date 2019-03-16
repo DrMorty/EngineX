@@ -10,6 +10,8 @@
 #include "object_components/Script.h"
 #include "object_components/Renderer2D.h"
 
+#include "controllers/InputController.h"
+
 using engine::Renderer2D;
 using engine::Script;
 
@@ -38,6 +40,8 @@ namespace engine
 namespace engineX
 {
     using namespace engine;
+
+    static InputController input;
 
     void createObject(std::string name);
     GameObject& getObject(std::string name);
