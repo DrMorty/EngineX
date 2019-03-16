@@ -4,25 +4,27 @@
 
 namespace engine
 {   
-    RenderManager::RenderManager(WindowSettings windowSettings) : windowInstance(sf::RenderWindow(sf::VideoMode(windowSettings.width, windowSettings.height), windowSettings.name))
+    RenderManager::RenderManager()
     {
     }
 
     void RenderManager::renderDrawableObjects() 
     {
-        windowInstance.clear();
+        auto& window = Engine::instance()->dataStorage->getWindowInstance();
 
-        for (auto [name, object] : Engine::instance() -> dataStorage -> gameObjects)
+        window.clear();
+
+        for (auto& [name, object] : Engine::instance() -> dataStorage -> gameObjects)
         {
             if (object.hasComponent<Renderer2D>())
-                object.getComponent<Renderer2D>()->draw(windowInstance);
+                object.getComponent<Renderer2D>()->draw(window);
         };
 
-        windowInstance.display();
+        window.display();
     }   
 
     void RenderManager::renderObject(sf::Drawable& object)
     {
-        windowInstance.draw(object);
+        Engine::instance()->dataStorage->getWindowInstance().draw(object);
     }
 }

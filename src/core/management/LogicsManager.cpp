@@ -19,6 +19,16 @@ namespace engine
         notStartedScripts.clear();
     }
 
+    void LogicsManager::updateLogics()
+    {
+        eventManager.pollEvents();
+
+        callStartForScripts();
+        callUpdateForScripts();
+        
+        eventManager.clearEvents();
+    }
+
     void LogicsManager::registerScript(Script* script)
     {
         notStartedScripts.push_back(script);

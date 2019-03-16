@@ -1,7 +1,15 @@
 #include "Engine.h"
 
+#include <exception>
+
 namespace engine
 {    
+    class EngineException: public std::exception
+    {
+    };
+
+    EngineException GameObjectAlreadyExist;
+
     Engine* Engine::m_instance = 0;
 
     Engine::Engine()
@@ -30,8 +38,7 @@ namespace engine
         for(;;)
         {
             renderManager -> renderDrawableObjects();
-            logicsManager -> callStartForScripts();
-            logicsManager -> callUpdateForScripts();
+            logicsManager -> updateLogics();
         }
     };
 }
@@ -40,7 +47,12 @@ namespace engineX
 {
     void createObject(std::string name)
     {
-        Engine::instance()->dataStorage->gameObjects[name] = GameObject(name);
+        auto& v = Engine::instance()->dataStorage->getGameObjects();
+
+        if (v.find(name) != v.end())
+            throw GameObjectAlreadyExist;
+
+        v.try_emplace(name, name);
     }
 
     GameObject& getObject(std::string name)

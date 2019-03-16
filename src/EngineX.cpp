@@ -22,6 +22,7 @@ int main()
     texture.loadFromFile("logo.png");
 
     engineX::createObject("test");
+    
     engineX::getObject("test").addComponent<Renderer2D>();
     engineX::getObject("test").addComponent<TestScript>();
     engineX::getObject("test").getComponent<Renderer2D>()->setSprite(texture);

@@ -12,12 +12,12 @@ namespace engine
 
     GameObject::GameObject(std::string t_name) : name(t_name) 
     {
-        for (auto component : m_components)
-            delete component;
     };
 
     GameObject::~GameObject() 
     {
+        for (auto component : m_components)
+            delete component;
     };
 
     void GameObject::registerScriptForThisObject(GameObjectComponent* script)
