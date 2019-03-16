@@ -12,17 +12,17 @@ class TestScript : public Script
 
     void update()
     {
-        if (engineX::input.getKeyDown(KeyCode::W))
-            object->transform.position.y -= 5;
+        if (engineX::Input::getKey(KeyCode::W))
+            object->transform.position.y -= 0.1;
 
-        if (engineX::input.getKeyDown(KeyCode::S))
-            object->transform.position.y += 5;
+        if (engineX::Input::getKey(KeyCode::S))
+            object->transform.position.y += 0.1;
 
-        if (engineX::input.getKeyDown(KeyCode::A))
-            object->transform.position.x -= 5;
+        if (engineX::Input::getKey(KeyCode::A))
+            object->transform.position.x -= 0.1;
 
-        if (engineX::input.getKeyDown(KeyCode::D))
-            object->transform.position.x += 5;
+        if (engineX::Input::getKey(KeyCode::D))
+            object->transform.position.x += 0.1;
     }
 };
 

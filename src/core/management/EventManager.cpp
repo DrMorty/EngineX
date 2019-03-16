@@ -12,8 +12,15 @@ namespace engine
 
         while(window.pollEvent(event))
         {
+            if (event.type == sf::Event::KeyPressed)
+                Input::keyPressed(event.key.code);
+
+            if (event.type == sf::Event::KeyReleased)
+                Input::keyReleased(event.key.code);
+
             newEventsPerFrame.push_back(event);
         }
+            
     }
 
     void EventManager::clearEvents()
