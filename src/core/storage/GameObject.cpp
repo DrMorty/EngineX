@@ -24,6 +24,12 @@ namespace engine
                 continue;
             }
 
+            if (component->typeName == typeid(BoxCollider).name())
+            {
+                unregisterColliderForThisObject(component.get());
+                continue;
+            }
+
             unregisterScriptForThisObject(component.get());
         }
 
@@ -35,18 +41,28 @@ namespace engine
         Engine::instance()->logicsManager->registerScript(static_cast<Script*>(script));
     }
 
+    void GameObject::registerColliderForThisObject(GameObjectComponent* collider)
+    {
+        Engine::instance()->physicsManager->registerCollider(static_cast<BoxCollider*>(collider));
+    }
+
     void GameObject::registerRendererForThisObject(GameObjectComponent* renderer)
     {
         Engine::instance()->renderManager->registerRenderer(static_cast<Renderer2D*>(renderer));
     }
 
-    void GameObject::unregisterRendererForThisObject(GameObjectComponent* renderer)
-    {
-        Engine::instance()->renderManager->unregisterRenderer(static_cast<Renderer2D*>(renderer));
-    }
-
     void GameObject::unregisterScriptForThisObject(GameObjectComponent* script)
     {
         Engine::instance()->logicsManager->unregisterScript(static_cast<Script*>(script));
+    }
+
+    void GameObject::unregisterColliderForThisObject(GameObjectComponent* collider)
+    {
+        Engine::instance()->physicsManager->unregisterCollider(static_cast<BoxCollider*>(collider));
+    }
+
+    void GameObject::unregisterRendererForThisObject(GameObjectComponent* renderer)
+    {
+        Engine::instance()->renderManager->unregisterRenderer(static_cast<Renderer2D*>(renderer));
     }
 }

@@ -16,6 +16,7 @@ namespace engine
     {
         logicsManager = std::make_unique<LogicsManager>();
         renderManager = std::make_unique<RenderManager>();
+        physicsManager = std::make_unique<PhysicsManager>();
         dataStorage = std::make_unique<DataStorage>();
     };
 
@@ -38,6 +39,7 @@ namespace engine
         for(;;)
         {
             renderManager -> renderDrawableObjects();
+            physicsManager -> updatePhysics();
             logicsManager -> updateLogics();
         }
     };

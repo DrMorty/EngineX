@@ -37,11 +37,10 @@ class TestScript : public Script
 
         if (timeToSelfDestroy <= 0)
             engineX::deleteObject(object); 
-        
     }
 
     float velocityY = 0;
-    float timeToSelfDestroy = 5;
+    float timeToSelfDestroy = 15;
 };
 
 int main()
@@ -52,9 +51,12 @@ int main()
     engineX::createObject("test");
     
     engineX::getObject("test").addComponent<Renderer2D>();
+    engineX::getObject("test").addComponent<BoxCollider>();
     engineX::getObject("test").addComponent<TestScript>();
     engineX::getObject("test").getComponent<Renderer2D>()->setSprite(texture);
 
+    engineX::getObject("test").getComponent<BoxCollider>()->setCollider(-100, -100, 100, 100);
+    engineX::getObject("test").getComponent<BoxCollider>()->enableHighlight();
     engineX::runScene();
 
     return 0;

@@ -5,15 +5,14 @@
 
 #include "management/RenderManager.h"
 #include "management/LogicsManager.h"
+#include "management/PhysicsManager.h"
 #include "storage/DataStorage.h"
-
-#include "object_components/Script.h"
-#include "object_components/Renderer2D.h"
 
 #include "controllers/Input.h"
 #include "controllers/Time.h"
 
 using engine::Renderer2D;
+using engine::BoxCollider;
 using engine::Script;
 
 namespace engine
@@ -29,6 +28,7 @@ namespace engine
 
         std::unique_ptr<RenderManager> renderManager;
         std::unique_ptr<LogicsManager> logicsManager;
+        std::unique_ptr<PhysicsManager> physicsManager;
         std::unique_ptr<DataStorage> dataStorage;
 
     private:
