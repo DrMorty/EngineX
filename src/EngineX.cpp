@@ -28,7 +28,7 @@ class TestScript : public Script
         if (engineX::Input::getKeyDown(KeyCode::Space))
             velocityY = -400;
 
-        object->transform.position.y += velocityY * engineX::Time::deltaTime;
+        /*object->transform.position.y += velocityY * engineX::Time::deltaTime;
         velocityY += engineX::Time::deltaTime * 400;
 
         if (object->transform.position.y > 400)
@@ -37,11 +37,11 @@ class TestScript : public Script
         timeToSelfDestroy -= engineX::Time::deltaTime;
 
         if (timeToSelfDestroy <= 0)
-            engineX::deleteObject(object); 
+            engineX::deleteObject(object); */
     }
 
     float velocityY = 0;
-    float timeToSelfDestroy = 3;
+    float timeToSelfDestroy = 20;
 };
 
 int main()
@@ -58,6 +58,12 @@ int main()
     engineX::getObject("test").getComponent<BoxCollider>()->enableHighlight();
 
     engineX::getObject("test").addComponent<TestScript>();
+
+    engineX::createObject("ground");
+
+    engineX::getObject("ground").addComponent<BoxCollider>();
+    engineX::getObject("ground").getComponent<BoxCollider>()->enableHighlight();
+    engineX::getObject("ground").getComponent<BoxCollider>()->setCollider(100, 700, 800, 800);
 
     engineX::runScene();
 

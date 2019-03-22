@@ -19,6 +19,9 @@ namespace engine
         std::vector<BoxCollider*> colliders;
 
         void detectCollisions();
+        bool isCollision(BoxCollider* first, BoxCollider* second);
+        
+        CollisionDetails getCollisionDetails(BoxCollider* first, BoxCollider* second);
     };
 }
 

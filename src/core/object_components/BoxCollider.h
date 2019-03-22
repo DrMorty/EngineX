@@ -9,6 +9,21 @@
 
 namespace engine
 {   
+    class BoxCollider;
+
+    struct CollisionDetails
+    {
+        CollisionDetails(BoxCollider* obj1, BoxCollider* obj2, float depth, sf::Vector2f trajectory) : 
+        collider1(obj1), collider2(obj2), depth(depth), collisionTrajectory(trajectory)
+        {};
+
+        BoxCollider* collider1 = 0;
+        BoxCollider* collider2 = 0;
+
+        float depth;
+        sf::Vector2f collisionTrajectory;
+    };
+
     class BoxCollider : public GameObjectComponent
     {
      public:
