@@ -25,6 +25,7 @@ namespace engine
         static void keyReleased(sf::Keyboard::Key key);
 
         static std::map<KeyCode, bool> isKeyHold;
+        static std::map<KeyCode, bool> isPressedOnce;
 
      private:
         Input();

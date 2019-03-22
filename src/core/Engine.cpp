@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "controllers/Metrics.h"
 
 #include <exception>
 
@@ -18,6 +19,8 @@ namespace engine
         renderManager = std::make_unique<RenderManager>();
         physicsManager = std::make_unique<PhysicsManager>();
         dataStorage = std::make_unique<DataStorage>();
+
+        Metrics::enableLogging();
     };
 
     Engine::~Engine()
@@ -38,6 +41,8 @@ namespace engine
     {
         for(;;)
         {
+            Metrics::updateMetrics();
+
             renderManager -> renderDrawableObjects();
             physicsManager -> updatePhysics();
             logicsManager -> updateLogics();

@@ -5,6 +5,7 @@
 namespace engine
 {
     std::map<KeyCode, bool> Input::isKeyHold;
+    std::map<KeyCode, bool> Input::isPressedOnce;
 
     bool Input::getKey(KeyCode key)
     {
@@ -16,7 +17,7 @@ namespace engine
         auto keyPressedEvents = Engine::instance()->logicsManager->eventManager.getAllEventsOfType(sf::Event::KeyPressed);
 
         for (auto& event : keyPressedEvents)
-            if (event.key.code == key)
+            if (event.key.code == key && isPressedOnce[key])
                 return true;
                 
         return false;
@@ -35,12 +36,22 @@ namespace engine
 
     void Input::keyPressed(sf::Keyboard::Key key)
     {
-        isKeyHold[convertFromSfmlKey(key)] = true;
+        auto keyCode = convertFromSfmlKey(key);
+
+        isPressedOnce[keyCode] = true;
+
+        if (isKeyHold[keyCode])
+            isPressedOnce[keyCode] = false;
+
+        isKeyHold[keyCode] = true;
     }
 
     void Input::keyReleased(sf::Keyboard::Key key)
     {
-        isKeyHold[convertFromSfmlKey(key)] = false;
+        auto keyCode = convertFromSfmlKey(key);
+
+        isPressedOnce[keyCode] = false;
+        isKeyHold[keyCode] = false;
     }
 
     Input::Input()
