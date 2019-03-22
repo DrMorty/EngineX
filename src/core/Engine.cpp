@@ -43,9 +43,9 @@ namespace engine
         {
             Metrics::updateMetrics();
 
-            renderManager -> renderDrawableObjects();
-            physicsManager -> updatePhysics();
             logicsManager -> updateLogics();
+            renderManager -> renderDrawableObjects();
+            physicsManager -> updatePhysics();          
         }
     };
 }

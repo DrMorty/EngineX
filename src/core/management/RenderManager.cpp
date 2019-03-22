@@ -46,7 +46,8 @@ namespace engine
         };
 
         for (auto& line : lines)
-            line.position += collider->object->transform.position;
+            line.position = Camera::projectionToCamera(line.position + collider->object->transform.position);
+            //line.position += Camera::projectionToCamera(line.position + collider->object->transform.position);
 
         Engine::instance()->dataStorage->getWindowInstance().draw(lines, 8, sf::Lines);
     }

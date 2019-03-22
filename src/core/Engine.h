@@ -10,6 +10,7 @@
 
 #include "controllers/Input.h"
 #include "controllers/Time.h"
+#include "controllers/Camera.h"
 
 using engine::Renderer2D;
 using engine::BoxCollider;

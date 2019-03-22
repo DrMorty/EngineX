@@ -42,7 +42,7 @@ namespace engine
             rigidBody->prevPosition = rigidBody->object->transform.position;
 
             if (rigidBody->isGravity)
-                rigidBody->velocity += sf::Vector2f(0, rigidBody->gravityValue);
+                rigidBody->velocity -= sf::Vector2f(0, rigidBody->gravityValue);
 
             rigidBody->object->transform.position += Time::deltaTime * rigidBody->velocity;
         }
@@ -83,10 +83,10 @@ namespace engine
         if (leftTop1.x > rightDown2.x)
             return false;
 
-        if (rightDown1.y < leftTop2.y)
+        if (rightDown1.y > leftTop2.y)
             return false;
 
-        if (leftTop1.y > rightDown2.y)
+        if (leftTop1.y < rightDown2.y)
             return false;
 
         return true;

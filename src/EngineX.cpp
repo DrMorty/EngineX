@@ -7,19 +7,16 @@ class TestScript : public Script
  public:
     void start()
     {
-        object->transform.position.x = 400.0f;
-        object->transform.position.y = 300.0f;
-
-        //object->getComponent<RigidBody>()->gravityValue = 0.1f;
+        object->transform.position.y = 100;
     }
 
     void update()
     {
         if (engineX::Input::getKey(KeyCode::W))
-            object->transform.position.y -= 0.1;
+            object->transform.position.y += 0.1;
 
         if (engineX::Input::getKey(KeyCode::S))
-            object->transform.position.y += 0.1;
+            object->transform.position.y -= 0.1;
 
         if (engineX::Input::getKey(KeyCode::A))
             object->transform.position.x -= 0.1;
@@ -28,7 +25,7 @@ class TestScript : public Script
             object->transform.position.x += 0.1;
 
         if (engineX::Input::getKeyDown(KeyCode::Space))
-            object->getComponent<RigidBody>()->velocity.y += -500; 
+            object->getComponent<RigidBody>()->velocity.y -= -500; 
     }
 };
 
@@ -53,7 +50,7 @@ int main()
 
     engineX::getObject("ground").addComponent<BoxCollider>();
     engineX::getObject("ground").getComponent<BoxCollider>()->enableHighlight();
-    engineX::getObject("ground").getComponent<BoxCollider>()->setCollider(100, 700, 800, 800);
+    engineX::getObject("ground").getComponent<BoxCollider>()->setCollider(-200, -300, 200, -400);
 
     engineX::runScene();
 

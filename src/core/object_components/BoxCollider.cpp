@@ -25,10 +25,10 @@ namespace engine
         auto textureSize = object->getComponent<Renderer2D>()->getTexture().getSize();
 
         leftTop.x = 0 - textureSize.x / 2.0;
-        leftTop.y = 0 - textureSize.y / 2.0;
+        leftTop.y = 0 + textureSize.y / 2.0;
 
-        rightDown.x = textureSize.x / 2.0;
-        rightDown.y = textureSize.y / 2.0;
+        rightDown.x = 0 + textureSize.x / 2.0;
+        rightDown.y = 0 - textureSize.y / 2.0;
     }
 
     void BoxCollider::enableHighlight()
