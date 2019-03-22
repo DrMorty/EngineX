@@ -14,11 +14,8 @@ namespace engine
 
         window.clear();
 
-        for (auto& [name, object] : Engine::instance() -> dataStorage -> gameObjects)
-        {
-            if (object.hasComponent<Renderer2D>())
-                object.getComponent<Renderer2D>()->draw(window);
-        };
+        for (auto  renderer : renderers)
+            renderer->draw(window);
 
         window.display();
     }   
@@ -26,5 +23,10 @@ namespace engine
     void RenderManager::renderObject(sf::Drawable& object)
     {
         Engine::instance()->dataStorage->getWindowInstance().draw(object);
+    }
+
+    void RenderManager::registerRenderer(Renderer2D* renderer)
+    {
+        renderers.push_back(renderer);
     }
 }

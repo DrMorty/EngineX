@@ -11,6 +11,7 @@
 #include "object_components/Renderer2D.h"
 
 #include "controllers/Input.h"
+#include "controllers/Time.h"
 
 using engine::Renderer2D;
 using engine::Script;

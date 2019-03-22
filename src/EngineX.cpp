@@ -23,7 +23,19 @@ class TestScript : public Script
 
         if (engineX::Input::getKey(KeyCode::D))
             object->transform.position.x += 0.1;
+
+        if (engineX::Input::getKeyDown(KeyCode::Space))
+            velocityY = -400;
+
+        object->transform.position.y += velocityY * engineX::Time::deltaTime;
+        velocityY += engineX::Time::deltaTime * 400;
+
+        if (object->transform.position.y > 400)
+            object->transform.position.y = 400; 
+        
     }
+
+    float velocityY = 0;
 };
 
 int main()

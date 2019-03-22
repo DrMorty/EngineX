@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "../object_components/GameObjectComponent.h"
+#include "../object_components/Renderer2D.h"
 #include "../object_components/Script.h"
 
 namespace engine
@@ -42,6 +43,7 @@ namespace engine
 
     private:
         void registerScriptForThisObject(GameObjectComponent* script);
+        void registerRendererForThisObject(GameObjectComponent* renderer);
 
         std::vector<GameObjectComponent*> m_components;
     };
@@ -57,6 +59,9 @@ namespace engine
 
         if (std::is_base_of<Script, ComponentType>())
             registerScriptForThisObject(component);
+
+        if (typeid(ComponentType).name() == typeid(Renderer2D).name())
+            registerRendererForThisObject(component);
     }
 
     template <typename ComponentType>

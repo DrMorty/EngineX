@@ -21,6 +21,8 @@ namespace engine
 
     void LogicsManager::updateLogics()
     {
+        Time::updateTime();
+        
         eventManager.pollEvents();
 
         callStartForScripts();

@@ -24,4 +24,9 @@ namespace engine
     {
         Engine::instance()->logicsManager->registerScript(static_cast<Script*>(script));
     }
+
+    void GameObject::registerRendererForThisObject(GameObjectComponent* renderer)
+    {
+        Engine::instance()->renderManager->registerRenderer(static_cast<Renderer2D*>(renderer));
+    }
 }
