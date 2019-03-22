@@ -18,9 +18,35 @@ namespace engine
         colliders.erase(remove(colliders.begin(), colliders.end(), collider), colliders.end());
     }
 
+    void PhysicsManager::registerRigidBody(RigidBody* rigidBody)
+    {
+        rigidBodies.push_back(rigidBody);
+    }
+
+    void PhysicsManager::unregisterRigidBody(RigidBody* rigidBody)
+    {
+        rigidBodies.erase(remove(rigidBodies.begin(), rigidBodies.end(), rigidBody), rigidBodies.end());
+    }
+
+
     void PhysicsManager::updatePhysics()
     {
         detectCollisions();
+        calculatePhysics();
+    }
+
+    void PhysicsManager::calculatePhysics()
+    {
+        for (auto rigidBody : rigidBodies)
+        {
+            rigidBody->prevPosition = rigidBody->object->transform.position;
+
+            if (rigidBody->isGravity)
+                rigidBody->velocity += sf::Vector2f(0, rigidBody->gravityValue);
+
+            rigidBody->object->transform.position += Time::deltaTime * rigidBody->velocity;
+        }
+            
     }
 
     void PhysicsManager::detectCollisions()
@@ -28,11 +54,17 @@ namespace engine
         for (auto firstCollider : colliders)
             for (auto secondCollider : colliders)
             {
+                if (!firstCollider->object->hasComponent<RigidBody>())
+                    continue;
+
                 if (firstCollider == secondCollider)
                     continue;
 
                 if (isCollision(firstCollider, secondCollider))
+                {
                     auto details = getCollisionDetails(firstCollider, secondCollider);
+                    resolveCollision(details);
+                }
             }
 
     }
@@ -62,18 +94,29 @@ namespace engine
 
     CollisionDetails PhysicsManager::getCollisionDetails(BoxCollider* first, BoxCollider* second)
     {
-        auto firstPositionInCollision = first->object->transform.position;
-        auto v = firstPositionInCollision - second->object->transform.position;
+        auto collisionPosition = first->object->transform.position;
 
+        auto v = collisionPosition - first->object->getComponent<RigidBody>()->prevPosition;
         float v_len = sqrt(v.x*v.x+v.y*v.y);
-
         auto trajectory = v / v_len;
 
         for (int i = 1; isCollision(first, second); i++) 
             first->object->transform.position -= i * 1.0f * trajectory;
 
-        auto d = firstPositionInCollision - first->object->transform.position;
+        auto d = collisionPosition - first->object->transform.position;
 
         return CollisionDetails(first, second, sqrt(d.x*d.x+d.y*d.y), trajectory);
+    }
+
+    void PhysicsManager::resolveCollision(CollisionDetails& details)
+    {
+        if (!details.collider2->object->hasComponent<RigidBody>())
+        {
+            details.collider1->object->getComponent<RigidBody>()->velocity = sf::Vector2f(0, 0);
+            return;
+        }
+
+        //Add impulse resolving
+        details.collider1->object->getComponent<RigidBody>()->velocity = sf::Vector2f(0, 0);
     }
 }

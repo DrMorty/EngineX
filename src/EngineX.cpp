@@ -9,6 +9,8 @@ class TestScript : public Script
     {
         object->transform.position.x = 400.0f;
         object->transform.position.y = 300.0f;
+
+        //object->getComponent<RigidBody>()->gravityValue = 0.1f;
     }
 
     void update()
@@ -26,22 +28,8 @@ class TestScript : public Script
             object->transform.position.x += 0.1;
 
         if (engineX::Input::getKeyDown(KeyCode::Space))
-            velocityY = -400;
-
-        /*object->transform.position.y += velocityY * engineX::Time::deltaTime;
-        velocityY += engineX::Time::deltaTime * 400;
-
-        if (object->transform.position.y > 400)
-            object->transform.position.y = 400; 
-
-        timeToSelfDestroy -= engineX::Time::deltaTime;
-
-        if (timeToSelfDestroy <= 0)
-            engineX::deleteObject(object); */
+            object->getComponent<RigidBody>()->velocity.y += -500; 
     }
-
-    float velocityY = 0;
-    float timeToSelfDestroy = 20;
 };
 
 int main()
@@ -56,6 +44,8 @@ int main()
 
     engineX::getObject("test").addComponent<BoxCollider>();
     engineX::getObject("test").getComponent<BoxCollider>()->enableHighlight();
+
+    engineX::getObject("test").addComponent<RigidBody>();
 
     engineX::getObject("test").addComponent<TestScript>();
 

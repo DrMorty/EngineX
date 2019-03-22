@@ -9,7 +9,7 @@ namespace engine
     class Time
     {
      public:
-        static double deltaTime;
+        static float deltaTime;
         static void updateTime();
 
      private:

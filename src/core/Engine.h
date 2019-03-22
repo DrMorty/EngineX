@@ -13,6 +13,7 @@
 
 using engine::Renderer2D;
 using engine::BoxCollider;
+using engine::RigidBody;
 using engine::Script;
 
 namespace engine

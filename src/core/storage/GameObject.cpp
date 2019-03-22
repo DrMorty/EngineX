@@ -30,6 +30,12 @@ namespace engine
                 continue;
             }
 
+            if (component->typeName == typeid(RigidBody).name())
+            {
+                unregisterRigidBodyForThisObject(component.get());
+                continue;
+            }
+
             unregisterScriptForThisObject(component.get());
         }
 
@@ -41,15 +47,20 @@ namespace engine
         Engine::instance()->logicsManager->registerScript(static_cast<Script*>(script));
     }
 
+    void GameObject::registerRendererForThisObject(GameObjectComponent* renderer)
+    {
+        Engine::instance()->renderManager->registerRenderer(static_cast<Renderer2D*>(renderer));
+    }
+
     void GameObject::registerColliderForThisObject(GameObjectComponent* collider)
     {
         static_cast<BoxCollider*>(collider)->setColliderBySprite();
         Engine::instance()->physicsManager->registerCollider(static_cast<BoxCollider*>(collider));   
     }
 
-    void GameObject::registerRendererForThisObject(GameObjectComponent* renderer)
+    void GameObject::registerRigidBodyForThisObject(GameObjectComponent* rigidBody)
     {
-        Engine::instance()->renderManager->registerRenderer(static_cast<Renderer2D*>(renderer));
+        Engine::instance()->physicsManager->registerRigidBody(static_cast<RigidBody*>(rigidBody));
     }
 
     void GameObject::unregisterScriptForThisObject(GameObjectComponent* script)
@@ -57,13 +68,19 @@ namespace engine
         Engine::instance()->logicsManager->unregisterScript(static_cast<Script*>(script));
     }
 
+    void GameObject::unregisterRendererForThisObject(GameObjectComponent* renderer)
+    {
+        Engine::instance()->renderManager->unregisterRenderer(static_cast<Renderer2D*>(renderer));
+    }
+
     void GameObject::unregisterColliderForThisObject(GameObjectComponent* collider)
     {
         Engine::instance()->physicsManager->unregisterCollider(static_cast<BoxCollider*>(collider));
     }
 
-    void GameObject::unregisterRendererForThisObject(GameObjectComponent* renderer)
+    void GameObject::unregisterRigidBodyForThisObject(GameObjectComponent* rigidBody)
     {
-        Engine::instance()->renderManager->unregisterRenderer(static_cast<Renderer2D*>(renderer));
+        Engine::instance()->physicsManager->unregisterRigidBody(static_cast<RigidBody*>(rigidBody));
     }
+
 }

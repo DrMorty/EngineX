@@ -9,6 +9,7 @@
 #include "../object_components/GameObjectComponent.h"
 #include "../object_components/BoxCollider.h"
 #include "../object_components/Renderer2D.h"
+#include "../object_components/RigidBody.h"
 #include "../object_components/Script.h"
 
 namespace engine
@@ -44,12 +45,15 @@ namespace engine
 
     private:
         void registerScriptForThisObject(GameObjectComponent* script);
-        void registerColliderForThisObject(GameObjectComponent* collider);
         void registerRendererForThisObject(GameObjectComponent* renderer);
+        void registerColliderForThisObject(GameObjectComponent* collider);
+        void registerRigidBodyForThisObject(GameObjectComponent* rigidBody);
 
         void unregisterScriptForThisObject(GameObjectComponent* script);
-        void unregisterColliderForThisObject(GameObjectComponent* collider);
         void unregisterRendererForThisObject(GameObjectComponent* renderer);
+        void unregisterColliderForThisObject(GameObjectComponent* collider);
+        void unregisterRigidBodyForThisObject(GameObjectComponent* rigidBody);
+
 
         std::vector<std::shared_ptr<GameObjectComponent>> m_components;
     };
@@ -72,6 +76,9 @@ namespace engine
 
         if (typeid(ComponentType).name() == typeid(BoxCollider).name())
             registerColliderForThisObject(component.get());
+
+        if (typeid(ComponentType).name() == typeid(RigidBody).name())
+            registerRigidBodyForThisObject(component.get());
     }
 
     template <typename ComponentType>
