@@ -44,9 +44,8 @@ namespace engineX
 
     void createObject(std::string name);
     GameObject& getObject(std::string name);
-
-    //void destroyObject(std::string name);
-    //void destroyObject(GameObject& object);
+    void deleteObject(std::string name);
+    void deleteObject(GameObject* object);
 
     void runScene();
 }

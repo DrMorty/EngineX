@@ -57,7 +57,17 @@ namespace engineX
 
     GameObject& getObject(std::string name)
     {
-        return Engine::instance()->dataStorage->gameObjects["test"];
+        return Engine::instance()->dataStorage->gameObjects[name];
+    }
+
+    void deleteObject(std::string name)
+    {
+        Engine::instance()->dataStorage->gameObjects.erase(name);
+    }
+
+    void deleteObject(GameObject* object)
+    {
+        Engine::instance()->dataStorage->gameObjects.erase(object->name);
     }
 
     void runScene()

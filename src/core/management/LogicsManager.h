@@ -15,7 +15,9 @@ namespace engine
         void updateLogics();
         void callStartForScripts();
         void callUpdateForScripts();
+
         void registerScript(Script* script);
+        void unregisterScript(Script* script);
 
         EventManager eventManager;
     private:

@@ -45,23 +45,27 @@ namespace engine
         void registerScriptForThisObject(GameObjectComponent* script);
         void registerRendererForThisObject(GameObjectComponent* renderer);
 
-        std::vector<GameObjectComponent*> m_components;
+        void unregisterScriptForThisObject(GameObjectComponent* script);
+        void unregisterRendererForThisObject(GameObjectComponent* renderer);
+
+        std::vector<std::shared_ptr<GameObjectComponent>> m_components;
     };
 
     template <typename ComponentType>
     void GameObject::addComponent()
     {
-        auto component = new ComponentType;
+        std::shared_ptr<ComponentType> component = std::make_shared<ComponentType>();
+        
         component->typeName = typeid(ComponentType).name();
         component->object = this;
 
         m_components.push_back(component);
 
         if (std::is_base_of<Script, ComponentType>())
-            registerScriptForThisObject(component);
+            registerScriptForThisObject(component.get());
 
         if (typeid(ComponentType).name() == typeid(Renderer2D).name())
-            registerRendererForThisObject(component);
+            registerRendererForThisObject(component.get());
     }
 
     template <typename ComponentType>
@@ -70,7 +74,7 @@ namespace engine
         for (auto component : m_components)
             if (component->typeName == typeid(ComponentType).name())
             {
-                ComponentType* casted = static_cast<ComponentType*>(component);
+                ComponentType* casted = static_cast<ComponentType*>(component.get());
                 return casted;
             }
     }

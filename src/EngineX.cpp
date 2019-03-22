@@ -32,10 +32,16 @@ class TestScript : public Script
 
         if (object->transform.position.y > 400)
             object->transform.position.y = 400; 
+
+        timeToSelfDestroy -= engineX::Time::deltaTime;
+
+        if (timeToSelfDestroy <= 0)
+            engineX::deleteObject(object); 
         
     }
 
     float velocityY = 0;
+    float timeToSelfDestroy = 5;
 };
 
 int main()

@@ -29,4 +29,9 @@ namespace engine
     {
         renderers.push_back(renderer);
     }
+
+    void RenderManager::unregisterRenderer(Renderer2D* renderer)
+    {
+        renderers.erase(remove(renderers.begin(), renderers.end(), renderer), renderers.end());
+    }
 }

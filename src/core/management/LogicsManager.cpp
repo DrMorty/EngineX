@@ -36,4 +36,9 @@ namespace engine
         notStartedScripts.push_back(script);
         scripts.push_back(script);
     }
+
+    void LogicsManager::unregisterScript(Script* script)
+    {
+        scripts.erase(remove(scripts.begin(), scripts.end(), script), scripts.end());
+    }
 }

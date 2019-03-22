@@ -15,6 +15,7 @@ namespace engine
         void renderObject(sf::Drawable& object);
 
         void registerRenderer(Renderer2D* renderer);
+        void unregisterRenderer(Renderer2D* renderer);
 
     private:
 
