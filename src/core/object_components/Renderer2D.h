@@ -17,6 +17,8 @@ namespace engine
         void setTexture(const sf::Texture& t_texture);
         void draw(sf::RenderWindow& windowInstance);
 
+        sf::Texture& getTexture();
+
     private:
         sf::Sprite sprite;
         sf::Texture texture;

@@ -43,7 +43,8 @@ namespace engine
 
     void GameObject::registerColliderForThisObject(GameObjectComponent* collider)
     {
-        Engine::instance()->physicsManager->registerCollider(static_cast<BoxCollider*>(collider));
+        static_cast<BoxCollider*>(collider)->setColliderBySprite();
+        Engine::instance()->physicsManager->registerCollider(static_cast<BoxCollider*>(collider));   
     }
 
     void GameObject::registerRendererForThisObject(GameObjectComponent* renderer)

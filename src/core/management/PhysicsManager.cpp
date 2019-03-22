@@ -11,6 +11,7 @@ namespace engine
 
     void PhysicsManager::unregisterCollider(BoxCollider* collider)
     {
+        collider->disableHighlight();
         colliders.erase(remove(colliders.begin(), colliders.end(), collider), colliders.end());
     }
 

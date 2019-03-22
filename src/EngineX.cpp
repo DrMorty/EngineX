@@ -7,7 +7,8 @@ class TestScript : public Script
  public:
     void start()
     {
-        object->transform.position.y = 400.0f;
+        object->transform.position.x = 400.0f;
+        object->transform.position.y = 300.0f;
     }
 
     void update()
@@ -40,7 +41,7 @@ class TestScript : public Script
     }
 
     float velocityY = 0;
-    float timeToSelfDestroy = 15;
+    float timeToSelfDestroy = 3;
 };
 
 int main()
@@ -51,12 +52,13 @@ int main()
     engineX::createObject("test");
     
     engineX::getObject("test").addComponent<Renderer2D>();
-    engineX::getObject("test").addComponent<BoxCollider>();
-    engineX::getObject("test").addComponent<TestScript>();
     engineX::getObject("test").getComponent<Renderer2D>()->setSprite(texture);
 
-    engineX::getObject("test").getComponent<BoxCollider>()->setCollider(-100, -100, 100, 100);
+    engineX::getObject("test").addComponent<BoxCollider>();
     engineX::getObject("test").getComponent<BoxCollider>()->enableHighlight();
+
+    engineX::getObject("test").addComponent<TestScript>();
+
     engineX::runScene();
 
     return 0;

@@ -18,7 +18,15 @@ namespace engine
 
     void Renderer2D::draw(sf::RenderWindow& windowInstance)
     {
-        sprite.setPosition(object->transform.position);
+        sf::Vector2f newPosition = object->transform.position;
+        newPosition -= sf::Vector2f(texture.getSize().x / 2.0, texture.getSize().y / 2.0);
+
+        sprite.setPosition(newPosition);
         Engine::instance()->renderManager->renderObject(sprite);
+    }
+
+    sf::Texture& Renderer2D::getTexture()
+    {
+        return texture;
     }
 }
