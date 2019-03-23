@@ -99,7 +99,7 @@ int main()
     engineX::createObject("ball");
     engineX::getObject("ball").addComponent<BallBehaviour>();
 
-    engineX::getObject("ball").transform.position = sf::Vector2f(0, -300);
+    engineX::getObject("ball").transform.position = engine::Vector3(0, -300);
     
 
     // Construct and create blocks

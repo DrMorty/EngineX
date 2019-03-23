@@ -12,14 +12,16 @@
 #include "../object_components/RigidBody.h"
 #include "../object_components/Script.h"
 
+#include "../common/math/Math.h"
+
 namespace engine
 {   
     class Transform
     {
     public:
-        sf::Vector2<float> position = {0.0, 0.0};
-        sf::Vector2<float> rotation = {0.0, 0.0};
-        sf::Vector2<float> scale = {1.0, 1.0};
+        Vector3 position = {0.0, 0.0};
+        Vector3 rotation = {0.0, 0.0};
+        Vector3 scale = {1.0, 1.0};
     };
 
     class GameObject

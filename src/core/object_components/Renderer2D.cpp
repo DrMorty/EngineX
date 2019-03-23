@@ -18,7 +18,8 @@ namespace engine
 
     void Renderer2D::draw(sf::RenderWindow& windowInstance)
     {
-        sf::Vector2f newPosition = Camera::projectionToCamera(object->transform.position - sf::Vector2f(texture.getSize().x / 2.0f, -(texture.getSize().y / 2.0f)));
+        Vector3 textureSize = texture.getSize();
+        Vector3 newPosition = Camera::projectionToCamera(object->transform.position - Vector3(textureSize.x, -textureSize.y) / 2);
 
         sprite.setPosition(newPosition);
         Engine::instance()->renderManager->renderObject(sprite);

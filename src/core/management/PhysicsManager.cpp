@@ -42,9 +42,9 @@ namespace engine
             rigidBody->prevPosition = rigidBody->object->transform.position;
 
             if (rigidBody->isGravity)
-                rigidBody->velocity -= sf::Vector2f(0, rigidBody->gravityValue);
+                rigidBody->velocity -= Vector3(0, rigidBody->gravityValue);
 
-            rigidBody->object->transform.position += Time::deltaTime * rigidBody->velocity;
+            rigidBody->object->transform.position += rigidBody->velocity * Time::deltaTime;
         }
             
     }
@@ -109,7 +109,7 @@ namespace engine
         auto trajectory = v / v_len;
 
         for (int i = 1; isCollision(first, second); i++) 
-            first->object->transform.position -= i * 1.0f * trajectory;
+            first->object->transform.position -= trajectory * i;
 
         auto d = collisionPosition - first->object->transform.position;
 
@@ -123,11 +123,11 @@ namespace engine
 
         if (!details.collider2->object->hasComponent<RigidBody>())
         {
-            details.collider1->object->getComponent<RigidBody>()->velocity = sf::Vector2f(0, 0);
+            details.collider1->object->getComponent<RigidBody>()->velocity = Vector3();
             return;
         }
 
         //Add impulse resolving
-        details.collider1->object->getComponent<RigidBody>()->velocity = sf::Vector2f(0, 0);
+        details.collider1->object->getComponent<RigidBody>()->velocity = Vector3();
     }
 }

@@ -3,12 +3,12 @@
 
 namespace engine
 {
-    sf::Vector2f Camera::position;
+    Vector3 Camera::position;
 
-    sf::Vector2f Camera::projectionToCamera(sf::Vector2f objectPosition)
+    Vector3 Camera::projectionToCamera(Vector3 objectPosition)
     {
-        auto& window = Engine::instance()->dataStorage->getWindowInstance();
+        Vector3 windowSize = Engine::instance()->dataStorage->getWindowInstance().getSize();
         
-        return sf::Vector2f(objectPosition.x, -objectPosition.y) + position + sf::Vector2f(window.getSize() / 2u);
+        return Vector3(objectPosition.x, -objectPosition.y) + position + windowSize / 2;
     }
 }

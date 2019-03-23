@@ -1,9 +1,8 @@
 #ifndef RIGID_BODY_H
 #define RIGID_BODY_H
 
-#include <SFML/Graphics.hpp>
-
 #include "GameObjectComponent.h"
+#include "../common/math/Math.h"
 
 namespace engine
 {   
@@ -18,9 +17,8 @@ namespace engine
 
         float mass = 1.0f;
 
-        sf::Vector2f velocity;
-
-        sf::Vector2f prevPosition;
+        Vector3 velocity;
+        Vector3 prevPosition;
 
     private:
         
