@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <list>
+#include <map>
 
 #include "../storage/GameObject.h"
 #include "EventManager.h"
@@ -15,6 +16,7 @@ namespace engine
         void updateLogics();
         void callStartForScripts();
         void callUpdateForScripts();
+        void callOnCollisionForObject(GameObject* object, CollisionDetails& details);
 
         void registerScript(Script* script);
         void unregisterScript(Script* script);
@@ -22,7 +24,7 @@ namespace engine
         EventManager eventManager;
     private:
         std::list<Script*> notStartedScripts;
-        std::vector<Script*> scripts;
+        std::vector<Script*> scripts; 
     };
 }
 

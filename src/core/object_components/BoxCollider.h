@@ -39,6 +39,8 @@ namespace engine
         sf::Vector2f leftTop;
         sf::Vector2f rightDown;
 
+        bool isDynamic = true;
+
      private:
         bool highlighted = false;
     };

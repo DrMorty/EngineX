@@ -19,6 +19,13 @@ namespace engine
         notStartedScripts.clear();
     }
 
+    void LogicsManager::callOnCollisionForObject(GameObject* object, CollisionDetails& details)
+    {
+        for (auto script : scripts)
+            if (script->object == object)
+                script->onCollision(details);
+    }
+
     void LogicsManager::updateLogics()
     {
         Time::updateTime();

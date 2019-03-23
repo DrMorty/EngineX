@@ -14,6 +14,7 @@
 
 using engine::Renderer2D;
 using engine::BoxCollider;
+using engine::CollisionDetails;
 using engine::RigidBody;
 using engine::Script;
 

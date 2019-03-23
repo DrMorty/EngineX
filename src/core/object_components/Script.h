@@ -2,6 +2,7 @@
 #define SCRIPT_H
 
 #include "GameObjectComponent.h"
+#include "BoxCollider.h"
 
 namespace engine
 {   
@@ -17,6 +18,10 @@ namespace engine
         }
 
         ~Script()
+        {
+        }
+
+        virtual void onCollision(CollisionDetails& details)
         {
         }
     };

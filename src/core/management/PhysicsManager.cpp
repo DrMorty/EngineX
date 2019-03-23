@@ -62,8 +62,16 @@ namespace engine
 
                 if (isCollision(firstCollider, secondCollider))
                 {
-                    auto details = getCollisionDetails(firstCollider, secondCollider);
-                    resolveCollision(details);
+                    auto firstObjectDetails = getCollisionDetails(firstCollider, secondCollider);
+                    resolveCollision(firstObjectDetails);
+
+                    auto secondObjectDetails = firstObjectDetails;
+                    secondObjectDetails.collider1 = firstObjectDetails.collider2;
+                    secondObjectDetails.collider2 = firstObjectDetails.collider1;
+                    secondObjectDetails.collisionTrajectory = -1.0f * firstObjectDetails.collisionTrajectory;
+
+                    Engine::instance()->logicsManager->callOnCollisionForObject(firstCollider->object, firstObjectDetails);
+                    Engine::instance()->logicsManager->callOnCollisionForObject(secondCollider->object, secondObjectDetails);       
                 }
             }
 
@@ -110,6 +118,9 @@ namespace engine
 
     void PhysicsManager::resolveCollision(CollisionDetails& details)
     {
+        if (!details.collider1->isDynamic)
+            return;
+
         if (!details.collider2->object->hasComponent<RigidBody>())
         {
             details.collider1->object->getComponent<RigidBody>()->velocity = sf::Vector2f(0, 0);
